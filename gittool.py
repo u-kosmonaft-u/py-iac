@@ -1,33 +1,54 @@
+#!/usr/bin/env python3
+# coding: utf-8
+
+
+import os
+
+
 from git import Repo
 from git import RemoteProgress
-import os
 
 
 class GitDownloader(object):
     """
-
     This is git downloader class.
-
     It downloads files from git to the current working directory
-
-    """
-    cwd = os.getcwd()  # Just get current working directory to clone repos
-
-    def __init__(self, url, user='', password='', token='', path=cwd, git_branch='master'):
-        self.url = url
-        self.user = user
-        self.password = password
-        self.token = token
-        self.path = path
-        self.git_branch = git_branch
-
-    """
-    Static method to comply with the DRY principle
     """
 
+    def __init__(self, *args, **kwargs):
+        self.cwd = os.getcwd()
+        self.default_branch = "master"
+
+        try:
+            self.url = kwargs["url"]
+        except KeyError:
+            self.url = False
+        try:
+            self.user = kwargs["user"]
+        except KeyError:
+            self.user = False
+        try:
+            self.password = kwargs["password"]
+        except KeyError:
+            self.password = False
+        try:
+            self.token = kwargs["token"]
+        except KeyError:
+            self.token = False
+        try:
+            self.path = kwargs["path"]
+        except KeyError:
+            self.path = self.cwd
+        try:
+            self.git_branch = kwargs["git_branch"]
+        except KeyError:
+            self.git_branch = self.default_branch
+
+    # Static method to comply with the DRY principle
     @staticmethod
     def checkout(url, path, branch, progress, ) -> None:
-        Repo.clone_from(url, path, branch, progress)    # TODO: Maybe we need to parse url
+        # TODO: Maybe we need to parse url
+        Repo.clone_from(url, path, branch, progress)
 
     def clone(self):
         print("Cloning repository into %s" % self.path)
@@ -72,3 +93,4 @@ class MyProgressPrinter(RemoteProgress):
             cur_count / (max_count or 100.0),
             message or "NO MESSAGE",
         )
+

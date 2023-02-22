@@ -1,0 +1,20 @@
+---
+stages:
+  stage_one:
+    git: https://example.url.com
+    type: ansible
+    custom:
+      variable1: value1
+      variable2: value2
+  stage_two:
+    git: https://example1.url.com
+    type: terraform
+    custom:
+      variable1: value1
+      variable2: value2
+  stage_tree:
+    git: https://example2.url.com
+    type: ansible
+    custom:
+      variable1: value1
+      variable2: value2
