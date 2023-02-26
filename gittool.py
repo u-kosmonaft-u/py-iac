@@ -19,22 +19,11 @@ class GitDownloader(object):
         self.cwd = os.getcwd()
         self.default_branch = "master"
 
-        try:
-            self.url = kwargs["url"]
-        except KeyError:
-            self.url = False
-        try:
-            self.user = kwargs["user"]
-        except KeyError:
-            self.user = False
-        try:
-            self.password = kwargs["password"]
-        except KeyError:
-            self.password = False
-        try:
-            self.token = kwargs["token"]
-        except KeyError:
-            self.token = False
+        self.url = kwargs.get("url")
+        self.user = kwargs.get("user")
+        self.password = kwargs.get("password")
+        self.token = kwargs.get("token")
+
         try:
             self.path = kwargs["path"]
         except KeyError:
