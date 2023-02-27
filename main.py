@@ -1,9 +1,14 @@
 import yaml
 import sys
-
+# import gittool
+import read_config
 
 if __name__ == '__main__':
     # main entrypoint
+
+    # Try to read configuration file first
+    print("Reading configuration...")
+    config = read_config.ConfigReader()
     try:
         with open(sys.argv[1], 'r') as iac_file:
             print("Checkout file!")

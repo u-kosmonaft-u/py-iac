@@ -51,7 +51,7 @@ class GitDownloader(object):
                 single_branch=True,
                 depth=1,
                 to_path=f"/clone/to/here",
-                branch=branch,
+                branch=branch,w
                 )
             """
             try:
