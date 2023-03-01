@@ -1,19 +1,23 @@
 ---
 stages:
   stage_one:
-    git: https://example.url.com
-    type: ansible
-    custom:
-      variable1: value1
-      variable2: value2
+    git:
+      url: ssh://git@git.astralinux.ru:7999/~vsemenov/int-1032.git
+      branch: master
+      port: 7999
+      user: git
+      identities_file: ~/.ssh/vsemenov_astralinux.ru
   stage_two:
-    git: https://example1.url.com
+    git:
+      url: https://example1.url.com
+      branch: test
     type: terraform
     custom:
       variable1: value1
       variable2: value2
   stage_tree:
-    git: https://example2.url.com
+    git:
+      url: https://example2.url.com
     type: ansible
     custom:
       variable1: value1
